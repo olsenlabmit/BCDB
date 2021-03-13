@@ -1,0 +1,66 @@
+Search Information
+System/Overall Polymer SQL:,Mn < 75000
+Individual Block Search
+Block #1,Subgraph:,COC rep,SQL:,f < 0.3
+""
+BCDB HITS IN TABLE diblock
+ind,ORCID,DOI,phase1,phase2,T,notes,BigSMILES,Mn,Mw,D,N,name1,Mn1,Mw1,D1,N1,f1,ftot1,w1,rho1,name2,Mn2,Mw2,D2,N2,f2,ftot2,w2,rho2
+120,0000-0001-7737-0526,https://doi.org/10.1016/S0032-3861(02)00457-3,cylinder,,160.0,"""No ODT was found for these materials below 160C""","{[][<]CCO[>][<]}{[$][$]C\C=C/C[$],[$]C\C=C\C[$],[$]CC(C=C)[$][]}",14300.0,,,,PEO,,,,,0.248,0.248,,,14PB,,,,,0.752,0.752,,
+199,0000-0001-7737-0526,https://doi.org/10.1021/ma960105f,disordered,,25.0,"""Series A...all melt directly into the disordered phase""",COCCOCCO{[>][<]CCO[>][<]}{[>][<]C(CC)CO[>][<]}[H],2300.0,,,,PEO,,,,,0.28,0.28,,,POB,,,,,0.72,0.72,,
+203,0000-0001-7737-0526,https://doi.org/10.1039/B102784K,sphere,,50.0,,{[][<]CCO[>][<]}{[>][<]C(CC)CO[>][]},7400.0,,,,PEO,,,,,0.21,0.21,,,POB,,,,,0.79,0.79,,
+204,0000-0001-7737-0526,https://doi.org/10.1039/B102784K,sphere,disordered,60.0,,{[][<]CCO[>][<]}{[>][<]C(CC)CO[>][]},7400.0,,,,PEO,,,,,0.21,0.21,,,POB,,,,,0.79,0.79,,
+205,0000-0001-7737-0526,https://doi.org/10.1039/B102784K,cylinder,,70.0,,{[][<]CCO[>][<]}{[>][<]C(CC)CO[>][]},2300.0,,,,PEO,,,,,0.27,0.27,,,POB,,,,,0.73,0.73,,
+206,0000-0001-7737-0526,https://doi.org/10.1039/B102784K,cylinder,disordered,112.0,,{[][<]CCO[>][<]}{[>][<]C(CC)CO[>][]},2300.0,,,,PEO,,,,,0.27,0.27,,,POB,,,,,0.73,0.73,,
+207,0000-0001-7737-0526,https://doi.org/10.1039/B102784K,disordered,,70.0,,{[][<]CCO[>][<]}{[>][<]C(CC)CO[>][]},7200.0,,,,PEO,,,,,0.28,0.28,,,POB,,,,,0.72,0.72,,
+208,0000-0001-7737-0526,https://doi.org/10.1039/B102784K,cylinder,,70.0,,{[][<]CCO[>][<]}{[>][<]C(CC)CO[>][]},6500.0,,,,PEO,,,,,0.286,0.286,,,POB,,,,,0.714,0.714,,
+209,0000-0001-7737-0526,https://doi.org/10.1039/B102784K,cylinder,disordered,93.0,,{[][<]CCO[>][<]}{[>][<]C(CC)CO[>][]},6500.0,,,,PEO,,,,,0.286,0.286,,,POB,,,,,0.714,0.714,,
+265,0000-0003-4629-3817,https://doi.org/10.1063/1.478122,sphere,disordered,53.85000000000002,,"CCC(C){[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}{[>][<]CCO[>][<]}[H]",6600.0,6930.0,1.05,,PI,,,,,0.84,0.84,,,PEO,,,,,0.16000000000000003,0.16000000000000003,,
+270,0000-0003-4629-3817,https://doi.org/10.1063/1.478122,lamellar,sphere,-38.14999999999998,"""2 is crucial for differentiating the two structures and at present we can not exclude the formation of a sc structure. However, based on Leibler’s mean-field phase diagramm1 and on the complete SCFT,12 the bcc structure is more likely to occur.""","CCC(C){[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}{[>][<]CCO[>][<]}[H]",11800.0,12390.0,1.05,,PI,,,,,0.92,0.92,,,PEO,,,,,0.07999999999999996,0.07999999999999996,,
+271,0000-0003-4629-3817,https://doi.org/10.1063/1.478122,lamellar,cylinder,-24.149999999999977,,"CCC(C){[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}{[>][<]CCO[>][<]}[H]",14900.0,15943.000000000002,1.07,,PI,,,,,0.76,0.76,,,PEO,,,,,0.24,0.24,,
+273,0000-0003-4629-3817,https://doi.org/10.1063/1.478122,lamellar,disordered,49.85000000000002,,"CCC(C){[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}{[>][<]CCO[>][<]}[H]",5400.0,5778.0,1.07,,PI,,,,,0.85,0.85,,,PEO,,,,,0.15000000000000002,0.15000000000000002,,
+275,0000-0003-4629-3817,https://doi.org/10.1063/1.478122,disordered,,69.85000000000002,"Sample PI-PEO 5-1, Figure 1","CCC(C){[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}{[>][<]CCO[>][<]}[H]",6600.0,6930.0,1.05,,PI,,,,,0.84,0.84,,,PEO,,,,,0.16000000000000003,0.16000000000000003,,
+276,0000-0003-4629-3817,https://doi.org/10.1063/1.478122,disordered,,79.85000000000002,"""taken in the disordered phase for some temperatures…""","CCC(C){[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}{[>][<]CCO[>][<]}[H]",6600.0,6930.0,1.05,,PI,,,,,0.84,0.84,,,PEO,,,,,0.16000000000000003,0.16000000000000003,,
+277,0000-0003-4629-3817,https://doi.org/10.1063/1.478122,disordered,,84.85000000000002,,"CCC(C){[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}{[>][<]CCO[>][<]}[H]",6600.0,6930.0,1.05,,PI,,,,,0.84,0.84,,,PEO,,,,,0.16000000000000003,0.16000000000000003,,
+278,0000-0003-4629-3817,https://doi.org/10.1063/1.478122,disordered,,89.85000000000002,,"CCC(C){[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}{[>][<]CCO[>][<]}[H]",6600.0,6930.0,1.05,,PI,,,,,0.84,0.84,,,PEO,,,,,0.16000000000000003,0.16000000000000003,,
+279,0000-0003-4629-3817,https://doi.org/10.1063/1.478122,disordered,,94.85000000000002,,"CCC(C){[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}{[>][<]CCO[>][<]}[H]",6600.0,6930.0,1.05,,PI,,,,,0.84,0.84,,,PEO,,,,,0.16000000000000003,0.16000000000000003,,
+280,0000-0003-4629-3817,https://doi.org/10.1063/1.478122,disordered,,99.85000000000002,,"CCC(C){[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}{[>][<]CCO[>][<]}[H]",6600.0,6930.0,1.05,,PI,,,,,0.84,0.84,,,PEO,,,,,0.16000000000000003,0.16000000000000003,,
+281,0000-0003-4629-3817,https://doi.org/10.1063/1.478122,disordered,,109.85000000000002,,"CCC(C){[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}{[>][<]CCO[>][<]}[H]",6600.0,6930.0,1.05,,PI,,,,,0.84,0.84,,,PEO,,,,,0.16000000000000003,0.16000000000000003,,
+282,0000-0003-4629-3817,https://doi.org/10.1063/1.478122,disordered,,119.85000000000002,,"CCC(C){[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}{[>][<]CCO[>][<]}[H]",6600.0,6930.0,1.05,,PI,,,,,0.84,0.84,,,PEO,,,,,0.16000000000000003,0.16000000000000003,,
+283,0000-0003-4629-3817,https://doi.org/10.1063/1.478122,disordered,,129.85000000000002,,"CCC(C){[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}{[>][<]CCO[>][<]}[H]",6600.0,6930.0,1.05,,PI,,,,,0.84,0.84,,,PEO,,,,,0.16000000000000003,0.16000000000000003,,
+389,0000-0003-4629-3817,https://doi.org/10.1021/ma001957p,lamellar,sphere,37.85000000000002,,"[H]{[>][>]CCO[<][<]}{[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}C(C)CC",11800.0,12390.0,1.05,,PEO,,,,,0.08,0.08,,,PI,,,,,0.92,0.92,,
+390,0000-0003-4629-3817,https://doi.org/10.1021/ma001957p,sphere,,59.85000000000002,,"[H]{[>][>]CCO[<][<]}{[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}C(C)CC",10900.0,11881.0,1.09,,PEO,,,,,0.09,0.09,,,PI,,,,,0.91,0.91,,
+391,0000-0003-4629-3817,https://doi.org/10.1021/ma001957p,lamellar,sphere,41.85000000000002,,"[H]{[>][>]CCO[<][<]}{[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}C(C)CC",14200.0,15052.0,1.06,,PEO,,,,,0.1,0.1,,,PI,,,,,0.9,0.9,,
+392,0000-0003-4629-3817,https://doi.org/10.1021/ma001957p,sphere,,59.85000000000002,,"[H]{[>][>]CCO[<][<]}{[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}C(C)CC",15140.0,16048.400000000001,1.06,,PEO,,,,,0.11,0.11,,,PI,,,,,0.89,0.89,,
+393,0000-0003-4629-3817,https://doi.org/10.1021/ma001957p,lamellar,sphere,44.85000000000002,,"[H]{[>][>]CCO[<][<]}{[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}C(C)CC",15300.0,16065.0,1.05,,PEO,,,,,0.156,0.156,,,PI,,,,,0.844,0.844,,
+394,0000-0003-4629-3817,https://doi.org/10.1021/ma001957p,sphere,disordered,34.85000000000002,,"[H]{[>][>]CCO[<][<]}{[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}C(C)CC",6600.0,6930.0,1.05,,PEO,,,,,0.16,0.16,,,PI,,,,,0.84,0.84,,
+395,0000-0003-4629-3817,https://doi.org/10.1021/ma001957p,lamellar,cylinder,57.85000000000002,,"[H]{[>][>]CCO[<][<]}{[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}C(C)CC",14900.0,15943.000000000002,1.07,,PEO,,,,,0.24,0.24,,,PI,,,,,0.76,0.76,,
+""
+Search Information
+System/Overall Polymer SQL:,Mn < 75000
+Individual Block Search
+Block #1,Subgraph:,COC rep,SQL:,f < 0.3
+""
+BCDB HITS IN TABLE triblock
+ind,ORCID,DOI,phase1,phase2,T,notes,BigSMILES,Mn,Mw,D,N,name1,Mn1,Mw1,D1,N1,f1,ftot1,w1,rho1,name2,Mn2,Mw2,D2,N2,f2,ftot2,w2,rho2,name3,Mn3,Mw3,D3,N3,f3,ftot3,w3,rho3
+1,0000-0003-3977-1278,https://doi.org/10.1021/ma011716x,LAM2,,155.0,"""Figure 3 SAXS data from the parent PI−PS diblock copolymer (90 °C, top), and SAXS (155 °C, middle) and TEM (OsO4 stained, bottom) results from a PI−PS−PEO triblock copolymer containing 9.8 vol % PEO. These results are consistent with two-domain (PI and mixed PS/PEO) lamellae (LAM2) morphologies.""","{[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}{[$][$]CC(c1ccccc1)[$][$]}{[>][<]CCO[>][<]}",15240.0,16002.0,1.05,,PI,,,,,0.448,0.448,,,PS,,,,,0.454,0.454,,,PEO,,,,,0.098,0.098,,
+""
+Search Information
+System/Overall Polymer SQL:,Mn < 75000
+Individual Block Search
+Block #1,Subgraph:,COC rep,SQL:,f < 0.3
+""
+BCDB HITS IN TABLE tetrablock
+ind,ORCID,DOI,phase1,phase2,T,notes,BigSMILES,Mn,Mw,D,N,name1,Mn1,Mw1,D1,N1,f1,ftot1,w1,rho1,name2,Mn2,Mw2,D2,N2,f2,ftot2,w2,rho2,name3,Mn3,Mw3,D3,N3,f3,ftot3,w3,rho3,name4,Mn4,Mw4,D4,N4,f4,ftot4,w4,rho4
+0,0000-0003-3977-1278,https://doi.org/10.1021/ma202196c,disordered,,80.0,,"CCC(C){[$][$]CC(c1ccccc1)[$][$]}{[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}{[$][$]CC(c1ccccc1)[$][$]}{[>][<]CCO[>][<]}[H]",23600.0,24308.0,1.03,,PS,,,,,,0.38,,0.969,PI,,,,,0.6,0.6,,0.83,PS,,,,,,0.38,,0.969,PEO,,,,,0.02,0.02,,1.064
+1,0000-0003-3977-1278,https://doi.org/10.1021/ma202196c,hexagonally packed spheres,disordered,213.0,,"CCC(C){[$][$]CC(c1ccccc1)[$][$]}{[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}{[$][$]CC(c1ccccc1)[$][$]}{[>][<]CCO[>][<]}[H]",24400.0,25376.0,1.04,,PS,,,,,,0.35,,0.969,PI,,,,,0.56,0.56,,0.83,PS,,,,,,0.35,,0.969,PEO,,,,,0.09,0.09,,1.064
+2,0000-0003-3977-1278,https://doi.org/10.1021/ma202196c,hexagonally packed spheres,,250.0,,"CCC(C){[$][$]CC(c1ccccc1)[$][$]}{[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}{[$][$]CC(c1ccccc1)[$][$]}{[>][<]CCO[>][<]}[H]",25000.0,27000.0,1.08,,PS,,,,,,0.34,,0.969,PI,,,,,0.53,0.53,,0.83,PS,,,,,,0.34,,0.969,PEO,,,,,0.12,0.12,,1.064
+3,0000-0003-3977-1278,https://doi.org/10.1021/ma202196c,hexagonally packed spheres,,250.0,,"CCC(C){[$][$]CC(c1ccccc1)[$][$]}{[$][$]C\C=C(C)/C[$],[$]C\C=C(C)\C[$],[$]CC(C(C)=C)[$],[$]CC(C)(C=C)[$][$]}{[$][$]CC(c1ccccc1)[$][$]}{[>][<]CCO[>][<]}[H]",26100.0,27666.0,1.06,,PS,,,,,,0.32,,0.969,PI,,,,,0.5,0.5,,0.83,PS,,,,,,0.32,,0.969,PEO,,,,,0.19,0.19,,1.064
+""
+Search Information
+System/Overall Polymer SQL:,Mn < 75000
+Individual Block Search
+Block #1,Subgraph:,COC rep,SQL:,f < 0.3
+""
+BCDB HITS IN TABLE hexablock
+ind,ORCID,DOI,phase1,phase2,T,notes,BigSMILES,Mn,Mw,D,N,name1,Mn1,Mw1,D1,N1,f1,ftot1,w1,rho1,name2,Mn2,Mw2,D2,N2,f2,ftot2,w2,rho2,name3,Mn3,Mw3,D3,N3,f3,ftot3,w3,rho3,name4,Mn4,Mw4,D4,N4,f4,ftot4,w4,rho4,name5,Mn5,Mw5,D5,N5,f5,ftot5,w5,rho5,name6,Mn6,Mw6,D6,N6,f6,ftot6,w6,rho6
+""

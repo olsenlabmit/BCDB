@@ -1,0 +1,14 @@
+name: bcdb
+
+channels:
+  - conda-forge
+  - rdkit
+
+dependencies:
+  - python>=3.6
+  - networkx
+  - rdkit>=2020.03.1.0
+  - numpy
+  - pandas
+  - xlrd >= 1.0.0
+  - openpyxl
