@@ -1,0 +1,24 @@
+﻿Category,Entry,Meaning,Units
+Quality Control,ORCID*,digital identifier for submitter,string
+,DOI*,digital object identifier for article,string
+System,phase(s)*,dictionary of phases,string
+,T*,temperature,Celsius
+,notes,user-defined information,string
+Overall Polymer,BigSMILES*,with end groups,string
+,Mn*,number-average molar mass,g/mol
+,Mw,weight-average molar mass,g/mol
+,D,dispersity,double
+,N,number of segments,double
+Individual Block,name*,dictionary of abbreviations,string
+,Mn,number-average molar mass,g/mol
+,Mw,weight-average molar mass,g/mol
+,D,dispersity,double
+,N,number of segments,double
+,f*,volume fraction,double
+,ftot*,total volume fraction in multiblock,double
+,w,weight fraction,double
+,rho,density,g/mL
+Uncertainty,std,standard deviation,double
+,se,standard error,double
+,unc,alternate uncertainty metric,double
+,description,description of alternate,string
