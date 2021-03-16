@@ -15,4 +15,4 @@ Launch the Anaconda prompt and navigate to the BCDB folder. Locate the environme
 3. cd platform
 4. python tool.py
 
-Refer to the video Tutorial.mp4 for a brief demonstration of the search, download, and visualization capabilities of this tool.
+Refer to the video Tutorial.mp4 for a brief demonstration of the search, download, and visualization capabilities.
