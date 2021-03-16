@@ -9,7 +9,10 @@ This platform requires the installation of Anaconda https://www.anaconda.com/pro
 
 # Installation
 Launch the Anaconda prompt and navigate to the BCDB folder. Locate the environment.yml file. Perform the following steps in the Anaconda prompt:
+
 1. conda env create -f environment.yml
 2. conda activate bcdb
 3. cd platform
 4. python tool.py
+
+Refer to the video Tutorial.mp4 for a brief demonstration of the search, download, and visualization capabilities of this tool.
