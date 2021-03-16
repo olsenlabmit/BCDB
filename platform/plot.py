@@ -98,7 +98,10 @@ def visualize(matches, default, choose_plots):
     if choose_plots[0].get() == 1:
         fig, ax = plt.subplots()
         for i in range(0, len(T)):
-            plt.scatter(fA[i], T[i], c = np.array([color[i]])/256.0, marker = shape[i], s = size[i])
+            try:
+                plt.scatter(fA[i], T[i], c = np.array([color[i]])/256.0, marker = shape[i], s = size[i])
+            except:
+                continue
         ax.xaxis.set_minor_locator(AutoMinorLocator(4))
         ax.yaxis.set_minor_locator(AutoMinorLocator(5))
         ax.set_xbound(lower = 0, upper = 1)
@@ -112,7 +115,10 @@ def visualize(matches, default, choose_plots):
     if choose_plots[1].get() == 1:
         fig, ax = plt.subplots()
         for i in range(0, len(T)):
-            plt.scatter(Mn[i], T[i], c = np.array([color[i]])/256.0, marker = shape[i], s=size[i])
+            try:
+                plt.scatter(Mn[i], T[i], c = np.array([color[i]])/256.0, marker = shape[i], s=size[i])
+            except:
+                continue
         ax.set_xscale('log')
         ax.yaxis.set_minor_locator(AutoMinorLocator(5))
         ax.tick_params(axis = 'both', which='major', length = 10, width = 1, direction='in', top = True, right=True)
@@ -125,7 +131,10 @@ def visualize(matches, default, choose_plots):
     if choose_plots[2].get() == 1:
         fig, ax = plt.subplots()
         for i in range(len(T)):
-            plt.scatter(fA[i], Mn[i], c = np.array([color[i]])/256.0, marker = shape[i], s=size[i])
+            try:
+                plt.scatter(fA[i], Mn[i], c = np.array([color[i]])/256.0, marker = shape[i], s=size[i])
+            except:
+                continue
         ax.set_yscale('log')
         ax.set_xbound(lower = 0, upper = 1)
         ax.xaxis.set_minor_locator(AutoMinorLocator(4))
@@ -138,7 +147,7 @@ def visualize(matches, default, choose_plots):
         plt.tight_layout()        
     if choose_plots[3].get() == 1:
         fig, ax = plt.subplots()
-        plt.hist(Mn[0], bins = 100, color=(0.8941176470588236, 0.10196078431372549, 0.10980392156862745), log = True)
+        plt.hist(Mn[0], bins = 25, color=(0.8941176470588236, 0.10196078431372549, 0.10980392156862745), log = True)
         ax.ticklabel_format(axis = 'x', style = 'sci', scilimits=(0,0))
         ax.xaxis.offsetText.set_fontsize(18)
         ax.xaxis.set_minor_locator(AutoMinorLocator(2))

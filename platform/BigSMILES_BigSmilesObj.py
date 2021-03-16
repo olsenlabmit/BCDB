@@ -488,8 +488,9 @@ import rdkit, collections, itertools
 from rdkit import Chem
 import pandas as pd
 def chemistry_table():
-    chemistries = pd.read_excel('..\BCPs.xlsx', 'BigSMILES')
+    chemistries = pd.read_csv("..\BigSMILES.csv")
     chemistries = pd.DataFrame(data = chemistries)
+    print(chemistries)
     chemistries = chemistries.fillna("")
     
     exact_hits = []

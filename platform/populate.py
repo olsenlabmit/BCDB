@@ -1,7 +1,7 @@
 import pandas as pd
 import sqlite3
 
-def create_table():
+def create_table(uncertainty_columns):
     table = ["diblock","triblock","tetrablock","hexablock","undecablock"]
     n = [2,3,4,6,11]
     connection = sqlite3.connect('BCDB.db')
@@ -32,6 +32,12 @@ def create_table():
             for j in range(len(columns)):
                 alter = "ALTER TABLE " + table[t] + " ADD " + columns[j] + str(i+1) + " " + data_type[j]
                 cursor.execute(alter)
+        for i in range(len(uncertainty_columns[t])):
+            if "desc" in uncertainty_columns[t][i]:
+                alter = "ALTER TABLE " + table[t] + " ADD " + uncertainty_columns[t][i] + " text"
+            else:
+                alter = "ALTER TABLE " + table[t] + " ADD " + uncertainty_columns[t][i] + " double"
+            cursor.execute(alter)
         connection.commit()
 
         bcdb = pd.read_excel('../BCPs.xlsx',table[t],skiprows=1)
@@ -188,7 +194,42 @@ def orcid_doi():
      d = DataFrame(d, columns=["ORCID","DOI"])
      d.to_excel("modifiedORCID.xlsx","Sheet1")
 
-##create_table()
-##orcid_doi()  
-checks()
+def include_uncertainty():
+    system_overall = ["T","Mn","Mw","D","N"]
+    block = ["Mn","Mw","D","N","f","ftot","w","rho"]
+    n = [2,3,4,6,11]
+    from pandas import DataFrame
+    tot = []
+    for table in n:
+        all_columns = []
+        error1 = ["std","se"]
+        for i in range(len(error1)):
+            for j in range(len(system_overall)):
+                all_columns.append(system_overall[j] + error1[i])
+            for j in range(table):
+                for k in range(len(block)):
+                    all_columns.append(block[k] + str(j + 1) + error1[i])
+        error2 = ["unc","desc"]
+        for j in range(len(system_overall)):
+            all_columns.append(system_overall[j] + error2[0])
+            all_columns.append(system_overall[j] + error2[1])
+        for j in range(table):
+            for k in range(len(block)):
+                all_columns.append(block[k] + str(j + 1) + error2[0])
+                all_columns.append(block[k] + str(j + 1) + error2[1])
+        tot.append(all_columns)
+    return tot
+            
+#create_table()
+#orcid_doi()  
+#checks()
+l = include_uncertainty()
+create_table(l)
+
+#check table columns
+##connection = sqlite3.connect('BCDB.db')
+##cursor = connection.cursor()
+##list(cursor.execute("select * from diblock"))
+##columns = list(map(lambda x: x[0], cursor.description))
+##print(columns)
      

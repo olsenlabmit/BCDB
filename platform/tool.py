@@ -225,7 +225,7 @@ def svd(download_data = False):
     for c in range(len(search)):
         if search[c][0] == 1:
             try:
-                temp_entry = re.split(', | ', search[c][7].get())
+                temp_entry = re.split(', | |,', search[c][7].get())
                 temp_entry = [float(i) for i in temp_entry]
                 fA_entry = [float(search[c][5].get())] * len(temp_entry)
                 Mn_entry = [float(search[c][6].get())] * len(temp_entry)
@@ -307,7 +307,7 @@ def add_search(input):
                 block.pack(side = TOP)
                 search[index][5].append([subgraph, sql])
 
-        qLabel = Label(f1, text = "Overall Polymer and System SQL Condition(s): ").grid(row = 0, column = 2, sticky=NSEW)
+        qLabel = Label(f1, text = "System and Overall Polymer SQL Condition(s): ").grid(row = 0, column = 2, sticky=NSEW)
         overall_sql = Entry(f1, width = 80, justify=CENTER)
         overall_sql.grid(row=0, column=3, columnspan = 4, sticky=NSEW)
         qLabel = Label(f1, text = "Individual Block Search: How Many?").grid(row = 1, column = 2, sticky=NSEW)
