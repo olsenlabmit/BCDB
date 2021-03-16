@@ -5,7 +5,7 @@ The Block Copolymer Database (BCDB) is a database platform that allows a user to
 The visualization software for the database coded in Python is available under the MIT License (https://opensource.org/licenses/MIT). The dataset is released under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).
 
 # Requirements
-This platform requires the installation of Anaconda: https://www.anaconda.com/products/individual
+This platform requires the installation of Anaconda https://www.anaconda.com/products/individual.
 
 # Installation
 Launch the Anaconda prompt and navigate to the BCDB folder. Locate the environment.yml file. Perform the following steps in the Anaconda prompt:
