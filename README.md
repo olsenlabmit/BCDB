@@ -16,7 +16,7 @@ Here are some files you will encounter in this repository:
 environment.yml: packages for installing a new environment on Anaconda to run the software.
 - names_dict.csv: block chemistry dictionary
 - phases_dict.csv: phase dictionary
-- data folder contains all data in separate CSV files (UTF-8) so that the data is open and accessible for each n-block chemistry. 
+- data folder contains all data in separate CSV files so that the data is open and accessible for each n-block chemistry. 
   - column_meanings.csv: column headers with their meanings. The only difference between n-block columns is the Individual Block category. For example, the diblock has two sets of columns from this category describing each block, a triblock has three, and a tetrablock has four.
 - platform folder contains the code for running the data (see Run the Tool to run the platform). 
   - plot.py and tool.py contain the code for the user interface for search, visualization, and download
@@ -24,9 +24,9 @@ environment.yml: packages for installing a new environment on Anaconda to run th
 # Funders 
 This work is funded by the Community Resource for Innovation in Polymer Technology, a project supported by the National Science Foundation (NSF) Convergence Accelerator program (NSF Convergence Accelerator Research-2040636). 
 # Rights
-The visualization software for the database coded in Python is available under the MIT License (https://opensource.org/licenses/MIT) in Zenodo (http://doi.org/10.5281/zenodo.XXXXXXX). The dataset is released under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/) in Zenodo (http://doi.org/10.5281/zenodo.XXXXXXX).
+The visualization software for the database coded in Python is available under the MIT License (https://opensource.org/licenses/MIT) in Zenodo (http://doi.org/10.5281/zenodo.4780310). The dataset is released under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/) in Zenodo (http://doi.org/10.5281/zenodo.4780310).
 # Location
-http://doi.org/10.5281/zenodo.XXXXXXX
+http://doi.org/10.5281/zenodo.4780310
 # Methodology
 - Manual curation from tables, text, and figures from peer-reviewed scientific literature. 
 - A DOI is provided for each data point. A paper on the full methodology will be published within a week or two. 
