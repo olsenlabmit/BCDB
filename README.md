@@ -24,9 +24,9 @@ environment.yml: packages for installing a new environment on Anaconda to run th
 # Funders 
 This work is funded by the Community Resource for Innovation in Polymer Technology, a project supported by the National Science Foundation (NSF) Convergence Accelerator program (NSF Convergence Accelerator Research-2040636). 
 # Rights
-The visualization software for the database coded in Python is available under the MIT License (https://opensource.org/licenses/MIT) in Zenodo (http://doi.org/10.5281/zenodo.4780310). The dataset is released under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/) in Zenodo (http://doi.org/10.5281/zenodo.4780310).
+The visualization software for the database coded in Python is available under the MIT License (https://opensource.org/licenses/MIT) in Zenodo (http://doi.org/10.5281/zenodo.4780309). The dataset is released under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/) in Zenodo (http://doi.org/10.5281/zenodo.4780309).
 # Location
-http://doi.org/10.5281/zenodo.4780310
+http://doi.org/10.5281/zenodo.4780309
 # Methodology
 - Manual curation from tables, text, and figures from peer-reviewed scientific literature. 
 - A DOI is provided for each data point. A paper on the full methodology will be published within a week or two. 
