@@ -66,9 +66,9 @@ def visualize(matches, default, choose_plots):
     size = [5]
     shape = ["o"]
     for s in subset:
-        T[-1].append(float(s[5]))
-        Mn[-1].append(float(s[8]))
-        fA[-1].append(float(s[17]))
+        T[-1].append(float(s[6]))
+        Mn[-1].append(float(s[10]))
+        fA[-1].append(float(s[27]))
 
     for s in range(len(matches)):
         for t in range(len(matches[s])):
@@ -81,9 +81,9 @@ def visualize(matches, default, choose_plots):
                 Mn.append([])
                 fA.append([])
                 for index in hits:
-                    T[-1].append(float(subset[index][5]))
-                    Mn[-1].append(float(subset[index][8]))
-                    fA[-1].append(float(subset[index][17]))
+                    T[-1].append(float(subset[index][6]))
+                    Mn[-1].append(float(subset[index][10]))
+                    fA[-1].append(float(subset[index][27]))
             elif matches[s][t][0] == "benchmark":
                 T.append(matches[s][t][1])
                 fA.append(matches[s][t][2])

@@ -12,3 +12,4 @@ dependencies:
   - pandas
   - xlrd >= 1.0.0
   - openpyxl
+  - XlsxWriter

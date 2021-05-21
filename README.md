@@ -1,19 +1,25 @@
 # Block Copolymer Phase Behavior Database (BCDB)
-# Creators
-- Nathan J. Rebello (0000-0002-0178-7701)
-- Akash Arora (0000-0002-2260-269X)
-- Hidenobu M. Mochigase
+# Creators (ORCID)
+- Nathan J. Rebello 
+  - https://orcid.org/0000-0002-0178-7701
+- Akash Arora
+  - https://orcid.org/0000-0002-2260-269X
+- Hidenobu Mochigase
 - Tzyy-Shyang Lin
-- Bradley D. Olsen (0000-0002-7272-7140)
+- Debra J. Audus
+  - https://orcid.org/0000-0002-5937-7721
+- Bradley D. Olsen
+  - https://orcid.org/0000-0002-7272-7140
 # Dates
-Project started on January 2020. Data released on March 2021. Data extracted from peer-reviewed literature from the 1980s to 2010s. 
+Project started on March 2020. Data released on March 2021. Data extracted from peer-reviewed literature from the 1980s to 2010s. 
 # Subject 
-The Block Copolymer Database (BCDB) is a database platform that allows a user to search, submit, visualize, and download experimental phase measurements and their associated characterization information for di- and multi-block copolymers. This database template can accommodate any number of blocks and at the time of publication contains over 5,300 block copolymer melt phase measurements mined from literature and manually collated. The chemical structure of the polymer is encoded in BigSMILES, an extension of the Simplified Molecular-Input Line-Entry System (SMILES) into the macromolecular domain, and the user can search repeat units and functional groups using the search syntax SMARTS (SMILES Arbitrary Target Specification). The user can also query characterization and phase information using the Structured Query Language (SQL). This collection of data facilitates the development of data-driven models, benchmarking and visualization of new data against existing samples, and compilation of custom sets of block copolymer data from the literature. 
+The Block Copolymer Database (BCDB) is a database platform that allows a user to search, submit, visualize, and download experimental phase measurements and their associated characterization information for di- and multi-block copolymers. This database template can accommodate any number of blocks and at the time of publication contains over 5,300 block copolymer melt phase measurements mined from literature and manually curated. The chemical structure of the polymer is encoded in BigSMILES, an extension of the Simplified Molecular-Input Line-Entry System (SMILES) into the macromolecular domain, and the user can search repeat units and functional groups using the search syntax SMARTS (SMILES Arbitrary Target Specification). The user can also query characterization and phase information using the Structured Query Language (SQL). This platform is an important step in making polymer data more accessible to the broader community, facilitates benchmarking and visualization of new data against existing samples, enables to user to search and download custom sets of block copolymer data from the literature, and will drive the development of data-driven models. We note a model trained on this data significantly outperforms self-consistent field theory. 
 # Organization
 Here are some files you will encounter in this repository:
 - Tutorial.mp4: brief demonstration of the search, download, and visualization capabilities.
 environment.yml: packages for installing a new environment on Anaconda to run the software.
-- BigSMILES.csv: block chemistries in the dataset
+- names_dict.csv: block chemistry dictionary
+- phases_dict.csv: phase dictionary
 - data folder contains all data in separate CSV files (UTF-8) so that the data is open and accessible for each n-block chemistry. 
   - column_meanings.csv: column headers with their meanings. The only difference between n-block columns is the Individual Block category. For example, the diblock has two sets of columns from this category describing each block, a triblock has three, and a tetrablock has four.
 - platform folder contains the code for running the data (see Run the Tool to run the platform). 

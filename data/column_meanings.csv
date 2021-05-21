@@ -1,23 +1,37 @@
-﻿Category,Entry,Meaning,Units
+﻿Category,Entry,Meaning,Data Type or Units
 Quality Control,ORCID*,digital identifier for submitter,string
 ,DOI*,digital object identifier for article,string
 System,phase(s)*,dictionary of phases,string
+,phase_method,method for phase,string
 ,T*,temperature,Celsius
-,notes,user-defined information,string
-Overall Polymer,BigSMILES*,with end groups,string
+,T_infer,if temperature was inferred ,Boolean
+,notes,user-defined notes,string
+Overall Polymer,BigSMILES*,structure notation with end groups,string
 ,Mn*,number-average molar mass,g/mol
-,Mw,weight-average molar mass,g/mol
+,Mn_method,method for Mn,string
+,Mw,mass average molar mass,g/mol
+,Mw_method,method for Mw,string
 ,D,dispersity,double
+,D_method,method for dispersity,string
 ,N,number of segments,double
+,N_method,method for N,string
 Individual Block,name*,dictionary of abbreviations,string
 ,Mn,number-average molar mass,g/mol
-,Mw,weight-average molar mass,g/mol
+,Mn_method,method for Mn,string
+,Mw,mass average molar mass,g/mol
+,Mw_method,method for Mw,string
 ,D,dispersity,double
+,D_method,method for D,string
 ,N,number of segments,double
+,N_method,method for N,string
 ,f*,volume fraction,double
+,f_method,method for f,string
 ,ftot*,total volume fraction in multiblock,double
-,w,weight fraction,double
+,ftot_method,method for ftot,string
+,w,mass fraction,double
+,w_method,method for w,string
 ,rho,density,g/mL
+,rho_method,method for rho,string
 Uncertainty,std,standard deviation,double
 ,se,standard error,double
 ,unc,alternate uncertainty metric,double

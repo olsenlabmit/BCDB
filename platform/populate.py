@@ -15,13 +15,19 @@ def create_table(uncertainty_columns):
             DOI text,
             phase1 text,
             phase2 text,
+            phase_method text,
             T double,
+            T_infer bool,
             notes text,
             BigSMILES text,
             Mn double,
+            Mn_method text,
             Mw double,
+            Mw_method text,
             D double,
-            N double
+            D_method text,
+            N double,
+            N_method text
         )
         """
         create += alter
@@ -29,9 +35,13 @@ def create_table(uncertainty_columns):
         columns = ["name","Mn","Mw","D","N","f","ftot","w","rho"]
         data_type = ["text","double","double","double","double","double","double","double","double"]
         for i in range(n[t]):
-            for j in range(len(columns)):
-                alter = "ALTER TABLE " + table[t] + " ADD " + columns[j] + str(i+1) + " " + data_type[j]
-                cursor.execute(alter)
+            alter = "ALTER TABLE " + table[t] + " ADD " + columns[0] + str(i+1) + " " + data_type[0]
+            cursor.execute(alter)
+            for j in range(1, len(columns)):
+                    alter = "ALTER TABLE " + table[t] + " ADD " + columns[j] + str(i+1) + " " + data_type[j]
+                    cursor.execute(alter)
+                    alter = "ALTER TABLE " + table[t] + " ADD " + columns[j] + str(i+1) + "_method " + data_type[j]
+                    cursor.execute(alter)
         for i in range(len(uncertainty_columns[t])):
             if "desc" in uncertainty_columns[t][i]:
                 alter = "ALTER TABLE " + table[t] + " ADD " + uncertainty_columns[t][i] + " text"
@@ -40,7 +50,7 @@ def create_table(uncertainty_columns):
             cursor.execute(alter)
         connection.commit()
 
-        bcdb = pd.read_excel('../BCPs.xlsx',table[t],skiprows=1)
+        bcdb = pd.read_excel('../data/BCPs.xlsx',table[t],skiprows=1)
         columns = list(bcdb.columns) 
         bcdb = bcdb.values.tolist()
         for i in range(len(bcdb)):
@@ -49,6 +59,7 @@ def create_table(uncertainty_columns):
                     bcdb[i][j] = bcdb[i][j].strip()
         from pandas import DataFrame
         bcdb = DataFrame(bcdb, columns = columns)
+        print(list(bcdb.columns))
         bcdb.to_sql(name=table[t],con=connection,if_exists='append',index=False)
             
     connection.close()

@@ -89,12 +89,19 @@ def match_criterion(matrix):
 def replace(sql, letter):
     sql = sql.replace(" name "," name" + letter + " ")
     sql = sql.replace(" Mn "," Mn" + letter + " ")
+    sql = sql.replace(" Mn_method "," Mn" + letter + "_method ")
     sql = sql.replace(" Mw "," Mw" + letter + " ")
+    sql = sql.replace(" Mw_method "," Mw" + letter + "_method ")
     sql = sql.replace(" D "," D" + letter + " ")
+    sql = sql.replace(" D_method "," D" + letter + "_method ")
     sql = sql.replace(" N "," N" + letter + " ")
+    sql = sql.replace(" N_method "," N" + letter + "_method ")
     sql = sql.replace(" f "," f" + letter + " ")
+    sql = sql.replace(" f_method "," f" + letter + "_method ")
     sql = sql.replace(" w "," w" + letter + " ")
+    sql = sql.replace(" w_method "," W" + letter + "_method ")
     sql = sql.replace(" p "," p" + letter + " ")
+    sql = sql.replace(" p_method "," p" + letter + "_method ")
     return sql
 
 def execute_search(all_color, all_size, all_shape, all_overall_sql, all_query, all_target_blocks):
@@ -152,6 +159,7 @@ def execute_search(all_color, all_size, all_shape, all_overall_sql, all_query, a
                         else:
                             sql = replace(" " + sql, str(j+1))
                             subset = cursor.execute("select ind from " + table_name + " where " + sql)
+                            print("select ind from " + table_name + " where " + sql)
                             for s in subset:
                                 hits[s[0]][3][i][j] = 1
                 prune = []
@@ -381,7 +389,7 @@ def change_default(searches):
     default = chosen[0]
     d = Button(searches, text = "Default Color", bg = chosen[1], command = lambda: change_default(searches)).grid(row = 0, column = 3)
 d = Button(searches, text = "Default Color", command = lambda: change_default(searches)).grid(row = 0, column = 3)
-e = Button(searches, text = "Visualize", command=svd).grid(row = 0, column = 4)
+e = Button(searches, text = "Visualize", command=svd).grid(row = 0, column = 4)    
 searches.pack(side = TOP)
 
 choose_frame = Frame(master)
@@ -389,12 +397,12 @@ choose_plots = [IntVar(),IntVar(),IntVar(),IntVar(),IntVar(),IntVar()]
 choose_plots[0].set(1)
 for i in range(1, 6):
     choose_plots[i].set(0)
-c = Checkbutton(choose_frame, text="T vs. f\u1D00", variable=choose_plots[0]).pack(side = LEFT)
-c = Checkbutton(choose_frame, text="T vs. M\u2099", variable=choose_plots[1]).pack(side = LEFT)
-c = Checkbutton(choose_frame, text="M\u2099 vs. f\u1D00", variable=choose_plots[2]).pack(side = LEFT)
-c = Checkbutton(choose_frame, text="M\u2099 hist.", variable=choose_plots[3]).pack(side = LEFT)
+c = Checkbutton(choose_frame, text="T vs. fA", variable=choose_plots[0]).pack(side = LEFT)
+c = Checkbutton(choose_frame, text="T vs. Mn", variable=choose_plots[1]).pack(side = LEFT)
+c = Checkbutton(choose_frame, text="Mn vs. fA", variable=choose_plots[2]).pack(side = LEFT)
+c = Checkbutton(choose_frame, text="Mn hist.", variable=choose_plots[3]).pack(side = LEFT)
 c = Checkbutton(choose_frame, text="T hist.", variable=choose_plots[4]).pack(side = LEFT)
-c = Checkbutton(choose_frame, text="f\u1D00 hist.", variable=choose_plots[5]).pack(side = LEFT)
+c = Checkbutton(choose_frame, text="fA hist.", variable=choose_plots[5]).pack(side = LEFT)
 choose_frame.pack(side = TOP)
 
 existing_data = Frame(master).pack(side = TOP)
@@ -407,4 +415,33 @@ existing_canvas.bind('<Configure>', lambda e: existing_canvas.configure(scrollre
 frame_scrolling_existing = Frame(existing_canvas)
 existing_canvas.create_window((0,0), window=frame_scrolling_existing, anchor="nw")
 
+dictionary = Tk()
+dictionary.title("Dictionary")
+dictionary.geometry("500x500")
+
+from tkinter import ttk
+
+columns = ('Polymer', 'name column search key')
+name = ttk.Treeview(dictionary, columns=columns, show='headings')
+name.grid(row=0, column=0, columnspan=2)
+for col in columns:
+    name.heading(col, text=col)
+names_dict = pd.read_csv("../names_dict.csv")
+names_dict = pd.DataFrame(data = names_dict)
+names_dict = names_dict.fillna("")
+for k in range(len(names_dict)):
+    name.insert("", "end", values=(names_dict["Polymer"].iloc[k], names_dict["Name"].iloc[k]))
+
+columns = ('phase column search key', 'meaning')
+phase = ttk.Treeview(dictionary, columns=columns, show='headings')
+phase.grid(row=1, column=0, columnspan=2)
+for col in columns:
+    phase.heading(col, text=col)
+phase_dict = pd.read_csv("../phases_dict.csv")
+phase_dict = pd.DataFrame(data = phase_dict)
+phase_dict = phase_dict.fillna("")
+for k in range(len(phase_dict)):
+    phase.insert("", "end", values=(phase_dict["phases"].iloc[k], phase_dict["meaning"].iloc[k]))
+
 root.mainloop()
+

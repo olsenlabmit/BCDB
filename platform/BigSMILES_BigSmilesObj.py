@@ -487,10 +487,10 @@ class BigSMILES(SMILES):
 import rdkit, collections, itertools
 from rdkit import Chem
 import pandas as pd
+import os
 def chemistry_table():
-    chemistries = pd.read_csv("..\BigSMILES.csv")
+    chemistries = pd.read_csv(os.path.join(os.path.dirname( __file__ ), os.pardir, "names_dict.csv"))
     chemistries = pd.DataFrame(data = chemistries)
-    print(chemistries)
     chemistries = chemistries.fillna("")
     
     exact_hits = []
@@ -533,6 +533,7 @@ def chemistry_table():
                     nbond.append(rep.writeStandard(noBondDesc = True, forward = False))
         substructure_hits.append(join(nbond, 3))
     chemistries.insert(1, 'Substructure_Hit', substructure_hits)
+    # print(chemistries)
     return chemistries
 
 #######################################################################################################################
