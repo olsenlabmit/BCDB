@@ -1,15 +1,11 @@
 # Block Copolymer Phase Behavior Database (BCDB)
 # Creators (ORCID)
-- Nathan J. Rebello 
-  - https://orcid.org/0000-0002-0178-7701
-- Akash Arora
-  - https://orcid.org/0000-0002-2260-269X
+- Nathan J. Rebello (https://orcid.org/0000-0002-0178-7701)
+- Akash Arora (https://orcid.org/0000-0002-2260-269X)
 - Hidenobu Mochigase
 - Tzyy-Shyang Lin
-- Debra J. Audus
-  - https://orcid.org/0000-0002-5937-7721
-- Bradley D. Olsen
-  - https://orcid.org/0000-0002-7272-7140
+- Debra J. Audus (https://orcid.org/0000-0002-5937-7721)
+- Bradley D. Olsen (https://orcid.org/0000-0002-7272-7140)
 # Dates
 Project started on March 2020. Data released on March 2021. Data extracted from peer-reviewed literature from the 1980s to 2010s. 
 # Subject 
