@@ -33,12 +33,13 @@ Launch the Anaconda prompt and navigate to the BCDB folder. Locate the environme
 # Creators
 - Nathan J. Rebello (https://orcid.org/0000-0002-0178-7701)
 - Akash Arora (https://orcid.org/0000-0002-2260-269X)
-- Tzyy-Shyang Lin (https://orcid.org/0000-0002-0178-7701)
-- Jiale Shi (https://orcid.org/0000-0002-0178-7701)
+- Hidenobu Mochigase (hidenobu.mochigase@furukawaelectric.com)
+- Tzyy-Shyang Lin (https://orcid.org/0000-0002-8265-6702)
+- Jiale Shi (https://orcid.org/0000-0002-5447-3925)
 - Debra J. Audus (https://orcid.org/0000-0002-5937-7721)
 - Eric S. Muckley (https://orcid.org/0000-0001-7114-5424)
 - Ardiana Osmani (https://orcid.org/0000-0002-5532-0285)
-- Bradley D. Olsen (https://orcid.org/0000-0002-5937-7721)
+- Bradley D. Olsen (https://orcid.org/0000-0002-8265-6702)
 
 # Rights
 The visualization software for the database coded in Python is available under the MIT License (https://opensource.org/licenses/MIT) in Zenodo (http://doi.org/10.5281/zenodo.4780309). The dataset is released under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/) in Zenodo (http://doi.org/10.5281/zenodo.4780309).
