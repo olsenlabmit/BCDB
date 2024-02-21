@@ -1,11 +1,12 @@
+from BigSMILES_BigSmilesObj import chemistry_table
+from BigSMILES_BigSmilesObj import BigSMILES
+from plot import visualize
+
 import sqlite3
 import pandas as pd
 import numpy as np
 import copy
-from BigSMILES_BigSmilesObj import chemistry_table
-from plot import visualize
 import re
-
 import tkinter
 from tkinter import *
 from tkinter import colorchooser
@@ -20,52 +21,43 @@ search = []
 chemistries = chemistry_table()    
 
 def subgr_search(queries, bigsmiles, names):
-    """
-    Execute all queries on the same bigsmiles
-    """
-    
-    import re
-    ends = re.split("{|}",bigsmiles)
+    try:
+        Polymer = BigSMILES(bigsmiles)
+        repeat_list = []
+        for obj in Polymer:
+            repeat_list.append([])
+            for rep in obj:
+                repeat_list[-1].append(rep.writeStandard(noBondDesc = True))
 
-    import rdkit
-    from rdkit import Chem
-    list_of_negatives = []
-    for q in range(len(queries)):
-        subgraph = queries[q][0]
-        if subgraph == "":
-            continue
-        for index in range(len(names)):
-            match = False
-            if " rep" in subgraph:
-                search = subgraph[0:-4]
-                exact = chemistries[chemistries.Name==names[index]]['Exact_Hit']
-                exact = list(exact)[0]
-                isCycle = list(chemistries[chemistries.Name==names[index]]['isCycle'])[0]
-                if isCycle:
-                    search = search + search
-                else:
-                    search = search
-                for e in exact:
-                    target = Chem.MolFromSmiles(e)
-                    a = target.HasSubstructMatch(Chem.MolFromSmarts(search))
-                    b = target.GetNumAtoms() == Chem.MolFromSmarts(search).GetNumAtoms()
-                    if a and b:
-                        match = True
-                        break
+        from rdkit import Chem
+        list_of_negatives = []
+        for q in range(len(queries)):
+            subgraph = queries[q][0]
+            if subgraph == "":
+                continue
+            for index in range(len(names)):
+                match = False
+                for j in range(len(repeat_list[index])):
+                    if " ex" in subgraph:
+                        search = subgraph[0:-3]
+                        search = Chem.MolFromSmarts(search)
+                        target = Chem.MolFromSmiles(repeat_list[index][j])
+                        a = target.HasSubstructMatch(search)
+                        b = target.GetNumAtoms() == search.GetNumAtoms()
+                        if a and b:
+                            match = True
+                            break
+                    else:
+                        search = Chem.MolFromSmarts(subgraph)
+                        target = Chem.MolFromSmiles(repeat_list[index][j])
+                        a = target.HasSubstructMatch(search)
+                        if a:
+                            match = True
+                            break
                 if not match:
                     list_of_negatives.append([q,index])
-
-            else:
-                substr = chemistries[chemistries.Name==names[index]]['Substructure_Hit']
-                substr = list(substr)[0]
-                for s in substr:
-                    string = ends[2 * index] + s + ends[2 * index + 2]
-                    target = Chem.MolFromSmiles(string)
-                    if target.HasSubstructMatch(Chem.MolFromSmarts(subgraph)):
-                        match = True
-                        break
-                if not match:
-                    list_of_negatives.append([q,index])
+    except:
+        return []
     return list_of_negatives
 
 def match_criterion(matrix):
@@ -98,10 +90,12 @@ def replace(sql, letter):
     sql = sql.replace(" N_method "," N" + letter + "_method ")
     sql = sql.replace(" f "," f" + letter + " ")
     sql = sql.replace(" f_method "," f" + letter + "_method ")
+    sql = sql.replace(" ftot "," ftot" + letter + " ")
+    sql = sql.replace(" ftot_method "," ftot" + letter + "_method ")
     sql = sql.replace(" w "," w" + letter + " ")
     sql = sql.replace(" w_method "," W" + letter + "_method ")
-    sql = sql.replace(" p "," p" + letter + " ")
-    sql = sql.replace(" p_method "," p" + letter + "_method ")
+    sql = sql.replace(" rho "," rho" + letter + " ")
+    sql = sql.replace(" rho_method "," rho" + letter + "_method ")
     return sql
 
 def execute_search(all_color, all_size, all_shape, all_overall_sql, all_query, all_target_blocks):
@@ -137,7 +131,7 @@ def execute_search(all_color, all_size, all_shape, all_overall_sql, all_query, a
                 hits = []
                 for s in subset:
                     hits.append([s[0], s[1], 0, np.zeros((len(query), target_blocks)), [None]*target_blocks])
-                
+
                 if overall_sql != "":
                     subset = cursor.execute("select ind from " + table_name + " where " + overall_sql)
                     for s in subset:
@@ -245,7 +239,7 @@ def svd(download_data = False):
         cursor = connection.cursor()
         import csv
         for s in range(len(matches)):
-            with open("Search"+str(s+1)+".csv", "w", encoding="UTF-8", newline='') as csvfile:
+            with open("download/Search"+str(s+1)+".csv", "w", encoding="UTF-8", newline='') as csvfile:
                 csvwriter = csv.writer(csvfile)
                 for t in range(len(matches[s])):
                     if matches[s][t][0] == "benchmark":
@@ -397,12 +391,12 @@ choose_plots = [IntVar(),IntVar(),IntVar(),IntVar(),IntVar(),IntVar()]
 choose_plots[0].set(1)
 for i in range(1, 6):
     choose_plots[i].set(0)
-c = Checkbutton(choose_frame, text="T vs. fA", variable=choose_plots[0]).pack(side = LEFT)
-c = Checkbutton(choose_frame, text="T vs. Mn", variable=choose_plots[1]).pack(side = LEFT)
-c = Checkbutton(choose_frame, text="Mn vs. fA", variable=choose_plots[2]).pack(side = LEFT)
-c = Checkbutton(choose_frame, text="Mn hist.", variable=choose_plots[3]).pack(side = LEFT)
+c = Checkbutton(choose_frame, text="T vs. f\u1D00", variable=choose_plots[0]).pack(side = LEFT)
+c = Checkbutton(choose_frame, text="T vs. M\u2099", variable=choose_plots[1]).pack(side = LEFT)
+c = Checkbutton(choose_frame, text="M\u2099 vs. f\u1D00", variable=choose_plots[2]).pack(side = LEFT)
+c = Checkbutton(choose_frame, text="M\u2099 hist.", variable=choose_plots[3]).pack(side = LEFT)
 c = Checkbutton(choose_frame, text="T hist.", variable=choose_plots[4]).pack(side = LEFT)
-c = Checkbutton(choose_frame, text="fA hist.", variable=choose_plots[5]).pack(side = LEFT)
+c = Checkbutton(choose_frame, text="f\u1D00 hist.", variable=choose_plots[5]).pack(side = LEFT)
 choose_frame.pack(side = TOP)
 
 existing_data = Frame(master).pack(side = TOP)

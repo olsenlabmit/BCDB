@@ -67,8 +67,8 @@ def visualize(matches, default, choose_plots):
     shape = ["o"]
     for s in subset:
         T[-1].append(float(s[6]))
-        Mn[-1].append(float(s[10]))
-        fA[-1].append(float(s[27]))
+        Mn[-1].append(float(s[13]))
+        fA[-1].append(float(s[30]))
 
     for s in range(len(matches)):
         for t in range(len(matches[s])):
@@ -82,8 +82,8 @@ def visualize(matches, default, choose_plots):
                 fA.append([])
                 for index in hits:
                     T[-1].append(float(subset[index][6]))
-                    Mn[-1].append(float(subset[index][10]))
-                    fA[-1].append(float(subset[index][27]))
+                    Mn[-1].append(float(subset[index][13]))
+                    fA[-1].append(float(subset[index][30]))
             elif matches[s][t][0] == "benchmark":
                 T.append(matches[s][t][1])
                 fA.append(matches[s][t][2])
@@ -93,7 +93,7 @@ def visualize(matches, default, choose_plots):
                 shape.append(matches[s][t][6])
 
     ### Comment out this line if latex is not installed
-    # matplotlib.rcParams.update(plot_style())
+    matplotlib.rcParams.update(plot_style())
 
     if choose_plots[0].get() == 1:
         fig, ax = plt.subplots()

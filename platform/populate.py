@@ -1,7 +1,38 @@
 import pandas as pd
+from pandas import DataFrame
 import sqlite3
+import rdkit
+from rdkit import Chem
 
-def create_table(uncertainty_columns):
+from BigSMILES_BigSmilesObj import BigSMILES
+
+def create_table():
+    def include_uncertainty():
+        system_overall = ["T","meas","anneal","Talt","Mn","Mw","D","N"]
+        block = ["Mn","Mw","D","N","f","ftot","w","rho"]
+        n = [2,3,4,6,11]
+        tot = []
+        for table in n:
+            all_columns = []
+            error1 = ["std","se"]
+            for i in range(len(error1)):
+                for j in range(len(system_overall)):
+                    all_columns.append(system_overall[j] + error1[i])
+                for j in range(table):
+                    for k in range(len(block)):
+                        all_columns.append(block[k] + str(j + 1) + error1[i])
+            error2 = ["unc","desc"]
+            for j in range(len(system_overall)):
+                all_columns.append(system_overall[j] + error2[0])
+                all_columns.append(system_overall[j] + error2[1])
+            for j in range(table):
+                for k in range(len(block)):
+                    all_columns.append(block[k] + str(j + 1) + error2[0])
+                    all_columns.append(block[k] + str(j + 1) + error2[1])
+            tot.append(all_columns)
+        return tot
+    uncertainty = include_uncertainty()
+
     table = ["diblock","triblock","tetrablock","hexablock","undecablock"]
     n = [2,3,4,6,11]
     connection = sqlite3.connect('BCDB.db')
@@ -17,7 +48,10 @@ def create_table(uncertainty_columns):
             phase2 text,
             phase_method text,
             T double,
-            T_infer bool,
+            T_meas double,
+            T_anneal double,
+            T_alt double,
+            T_describe text,
             notes text,
             BigSMILES text,
             Mn double,
@@ -32,21 +66,21 @@ def create_table(uncertainty_columns):
         """
         create += alter
         cursor.execute(create)
-        columns = ["name","Mn","Mw","D","N","f","ftot","w","rho"]
+        columns = ["name","Mn","Mw","D","N","f","f_tot","w","rho"]
         data_type = ["text","double","double","double","double","double","double","double","double"]
         for i in range(n[t]):
             alter = "ALTER TABLE " + table[t] + " ADD " + columns[0] + str(i+1) + " " + data_type[0]
             cursor.execute(alter)
             for j in range(1, len(columns)):
-                    alter = "ALTER TABLE " + table[t] + " ADD " + columns[j] + str(i+1) + " " + data_type[j]
-                    cursor.execute(alter)
-                    alter = "ALTER TABLE " + table[t] + " ADD " + columns[j] + str(i+1) + "_method " + data_type[j]
-                    cursor.execute(alter)
-        for i in range(len(uncertainty_columns[t])):
-            if "desc" in uncertainty_columns[t][i]:
-                alter = "ALTER TABLE " + table[t] + " ADD " + uncertainty_columns[t][i] + " text"
+                alter = "ALTER TABLE " + table[t] + " ADD " + columns[j] + str(i+1) + " " + data_type[j]
+                cursor.execute(alter)
+                alter = "ALTER TABLE " + table[t] + " ADD " + columns[j] + str(i+1) + "_method " + data_type[j]
+                cursor.execute(alter)
+        for i in range(len(uncertainty[t])):
+            if "desc" in uncertainty[t][i]:
+                alter = "ALTER TABLE " + table[t] + " ADD " + uncertainty[t][i] + " text"
             else:
-                alter = "ALTER TABLE " + table[t] + " ADD " + uncertainty_columns[t][i] + " double"
+                alter = "ALTER TABLE " + table[t] + " ADD " + uncertainty[t][i] + " double"
             cursor.execute(alter)
         connection.commit()
 
@@ -57,15 +91,13 @@ def create_table(uncertainty_columns):
             for j in range(len(bcdb[i])):
                 if type(bcdb[i][j]) == str:
                     bcdb[i][j] = bcdb[i][j].strip()
-        from pandas import DataFrame
         bcdb = DataFrame(bcdb, columns = columns)
-        print(list(bcdb.columns))
         bcdb.to_sql(name=table[t],con=connection,if_exists='append',index=False)
             
     connection.close()
 
-def checks():
-    bcdb = pd.read_excel('../BCPs.xlsx',"diblock",skiprows=1)
+def phase_check():
+    bcdb = pd.read_excel('../data/BCPs.xlsx',"diblock",skiprows=1)
     bcdb = bcdb.fillna("")
 
     # check Figure 3
@@ -121,11 +153,12 @@ def checks():
     from plot import plot_style
 
     matplotlib.rcParams.update(plot_style())
-    
-    fig, ax = plt.subplots()
+
     C = np.array([[228, 26, 28],[55,126,184],[152,78,163],[77,175,74],[0,0,0],[160, 160, 160]])
     marker = ["s", "^", "d", "o", "*", "o"]
     label = ["Lam", "Cyl", "Gyr", "Sph", "Dis", "Other"]
+
+    fig, ax = plt.subplots()
     for i in range(len(label)-1, -1, -1):
         plt.scatter(fAplot[i], Tplot[i], marker = marker[i], s = 10, c = C[i]/256, label = label[i])
     handles, labels = ax.get_legend_handles_labels()
@@ -140,16 +173,22 @@ def checks():
     plt.xticks(fontsize = 12)
     plt.yticks(fontsize = 12)
     plt.tight_layout()
-##    ax.set_xscale('log')
-##    ax.set_xlim(10**3, 10**6)
-##    ax.yaxis.set_minor_locator(AutoMinorLocator(5))
-##    ax.tick_params(axis = 'both', which='major', length = 10, width = 1, direction='in', top = True, right=True)
-##    ax.tick_params(axis = 'both', which='minor', length = 5, width = 1, direction='in', top = True, right=True)
-##    plt.xlabel("$M_n$ (g/mol)", fontsize = 20)
-##    plt.ylabel("$T$ ($^{\circ}$C)", fontsize = 20)
-##    plt.xticks(fontsize = 12)
-##    plt.yticks(fontsize = 12)
-##    plt.tight_layout()
+
+    fig, ax = plt.subplots()
+    for i in range(len(label)-1, -1, -1):
+        plt.scatter(Mnplot[i], Tplot[i], marker = marker[i], s = 10, c = C[i]/256, label = label[i])
+    # handles, labels = ax.get_legend_handles_labels()
+    # ax.legend(reversed(handles), reversed(labels))
+    ax.set_xscale('log')
+    ax.set_xlim(10**3, 10**6)
+    ax.yaxis.set_minor_locator(AutoMinorLocator(5))
+    ax.tick_params(axis = 'both', which='major', length = 10, width = 1, direction='in', top = True, right=True)
+    ax.tick_params(axis = 'both', which='minor', length = 5, width = 1, direction='in', top = True, right=True)
+    plt.xlabel("$M_n$ (g/mol)", fontsize = 20)
+    plt.ylabel("$T$ ($^{\circ}$C)", fontsize = 20)
+    plt.xticks(fontsize = 12)
+    plt.yticks(fontsize = 12)
+    plt.tight_layout()
     plt.show()
     
     # check Figure 6
@@ -173,74 +212,137 @@ def checks():
             queries[3] += 1
         unique_diblock.add(sorted([nameA[i],nameB[i]]))
     print(len(unique_diblock))
+    
+def database_summary():
+    table = ["diblock","triblock","tetrablock","hexablock","undecablock"]
 
-def modifiedBS():  
-    bcdb = pd.read_excel('../BCPs.xlsx',"diblock",skiprows=1)
-    x = []
-    for i in bcdb["BigSMILES"]:
-        if i[0:4] in ["{[<]","{[$]","{[>]"]:
-            i = "{[]" + i[4:]
-        if i[-4:] in ["[<]}","[$]}","[>]}"]:
-            i = i[0:-4] + "[]}"
-        print(i)
-        x.append(i)
-    from pandas import DataFrame
-    x = DataFrame(x, columns=["BigSMILES"])
-    x.to_excel("modifiedBS.xlsx","Sheet1")
+    tot = 0
+    orcid = set()
+    blocks = set()
+    b = [2, 3, 4, 6, 11]
+    for i in range(len(table)):
+        bcdb = pd.read_excel('../data/BCPs.xlsx', table[i], skiprows=1)
+        bcdb = bcdb.fillna("")
+        
+        tot += len(bcdb["DOI"])
 
-def orcid_doi():
-     articles = pd.read_excel('../BCPs.xlsx',"Articles")
-     articles_o = articles["ORCID"]
-     articles_d = articles["DOI"]
-     articles_docID = articles["docID"]
-     bcdb = pd.read_excel('../BCPs.xlsx',"Rheology")
-     bcdb_docID = bcdb["docID"]
-     d = []
-     print(articles_docID)
-     for i in range(len(bcdb_docID)):
-         for j in range(len(articles_docID)):
-             if bcdb_docID[i].srip() == articles_docID[j].strip():
-                 d.append([articles_o[j], articles_d[j]])
-     from pandas import DataFrame
-     d = DataFrame(d, columns=["ORCID","DOI"])
-     d.to_excel("modifiedORCID.xlsx","Sheet1")
-
-def include_uncertainty():
-    system_overall = ["T","Mn","Mw","D","N"]
-    block = ["Mn","Mw","D","N","f","ftot","w","rho"]
-    n = [2,3,4,6,11]
-    from pandas import DataFrame
-    tot = []
-    for table in n:
-        all_columns = []
-        error1 = ["std","se"]
-        for i in range(len(error1)):
-            for j in range(len(system_overall)):
-                all_columns.append(system_overall[j] + error1[i])
-            for j in range(table):
-                for k in range(len(block)):
-                    all_columns.append(block[k] + str(j + 1) + error1[i])
-        error2 = ["unc","desc"]
-        for j in range(len(system_overall)):
-            all_columns.append(system_overall[j] + error2[0])
-            all_columns.append(system_overall[j] + error2[1])
-        for j in range(table):
-            for k in range(len(block)):
-                all_columns.append(block[k] + str(j + 1) + error2[0])
-                all_columns.append(block[k] + str(j + 1) + error2[1])
-        tot.append(all_columns)
-    return tot
+        for o in bcdb["DOI"]:
+            orcid.add(o)
+        
+        for j in range(1, b[i] + 1):
+            n = "name" + str(j)
+            for o in bcdb[n]:
+                blocks.add(o) 
+        
+        if b[i] == 2:
+            # unique diblocks
+            block_dict = {}
+            diblock_dict = {}
+            for j in range(len(bcdb["name1"])):
+                d = tuple(sorted([bcdb["name1"][j], bcdb["name2"][j]]))
+                if d not in diblock_dict:
+                    diblock_dict[d] = 0
+                diblock_dict[d] += 1 / len(bcdb["name1"])
+                if bcdb["name1"][j] not in block_dict:
+                    block_dict[bcdb["name1"][j]] = 0
+                block_dict[bcdb["name1"][j]] += 1/ (2 * len(bcdb["name1"]))
+                if bcdb["name2"][j] not in block_dict:
+                    block_dict[bcdb["name2"][j]] = 0
+                block_dict[bcdb["name2"][j]] += 1/ (2 * len(bcdb["name1"]))
+            block_dict = sorted(block_dict.items(), key=lambda x:x[1], reverse = True)
+            diblock_dict = sorted(diblock_dict.items(), key=lambda x:x[1], reverse = True)
+            print(block_dict)
+            print(diblock_dict)
+            print("# unique blocks in diblock page: ", len(block_dict))
+            print("# unique diblocks in diblock page: ", len(diblock_dict))
             
-#create_table()
-#orcid_doi()  
-#checks()
-l = include_uncertainty()
-create_table(l)
+            # single phase
+            single = 0
+            phase_dict = {}
+            for j in range(len(bcdb["phase1"])):
+                if bcdb["phase2"][j] == "":
+                    single += 1
+                    if bcdb["phase1"][j] not in phase_dict:
+                        phase_dict[bcdb["phase1"][j]] = 0
+                    phase_dict[bcdb["phase1"][j]] += 1/ (len(bcdb["phase1"]))
+            phase_dict = sorted(phase_dict.items(), key=lambda x:x[1], reverse = True)
+            print(phase_dict)
+            print("% pure phase in diblock page: ", single/len(bcdb["phase1"]))
+                
+    print("total data points: ", tot)
+    print("total papers:  ", len(orcid))
+    print("total unique blocks: ", len(blocks))
 
-#check table columns
-##connection = sqlite3.connect('BCDB.db')
-##cursor = connection.cursor()
-##list(cursor.execute("select * from diblock"))
-##columns = list(map(lambda x: x[0], cursor.description))
-##print(columns)
-     
+def main_Figure5():
+    bcdb = pd.read_excel('../data/BCPs.xlsx', "diblock", skiprows=1)
+    bcdb = bcdb.fillna("")
+    query = [0, 0, 0]
+    smarts = Chem.MolFromSmarts("[R]")
+    before = ""
+    before_R = False
+    for i in range(len(bcdb["phase1"])):
+        if bcdb["phase1"][i] == "lamellar" and bcdb["phase2"][i] == "":
+            a = bcdb["name1"][i]
+            b = bcdb["name2"][i]
+            if a == "PS" and b == "PI" or a == "PI" and b == "PS":
+                query[0] += 1
+        try:
+            if bcdb["BigSMILES"][i] == before:
+                if before_R:
+                    query[1] += 1
+            else:
+                before = bcdb["BigSMILES"][i]
+                Polymer = BigSMILES(bcdb["BigSMILES"][i])
+                both_R = True
+                for obj in Polymer:
+                    found = False
+                    for rep in obj:
+                        smiles = Chem.MolFromSmiles(rep.writeStandard(noBondDesc = True))
+                        if smiles.HasSubstructMatch(smarts):
+                            found = True
+                            break
+                    if not found:
+                        both_R = False
+                        break
+                before_R = both_R
+                if both_R:
+                    query[1] += 1
+        except:
+            x = 1
+        if float(bcdb["f1"][i]) < 0.25 or float(bcdb["f2"][i]) < 0.25:
+            query[2] += 1
+        if i % 100 == 0:
+            print(i)
+    print(query)
+
+def SI_Table4():
+    bcdb = pd.read_excel('../data/BCPs.xlsx', "diblock", skiprows=1)
+    bcdb = bcdb.fillna("")
+    query = [0, 0, 0, 0, 0]
+    for i in range(len(bcdb["phase1"])):
+        if bcdb["phase1"][i] == "lamellar" and bcdb["phase2"][i] == "":
+            query[0] += 1
+        if bcdb["phase1"][i] == "lamellar" or bcdb["phase2"][i] == "lamellar":
+            query[1] += 1
+        if bcdb["phase1"][i] == "lamellar" and bcdb["phase2"][i] == "disordered" or \
+            bcdb["phase1"][i] == "disordered" and bcdb["phase2"][i] == "lamellar":
+            query[2] += 1
+        if bcdb["phase1"][i] == "lamellar" and bcdb["phase2"][i] == "cylinder" or \
+            bcdb["phase1"][i] == "cylinder" and bcdb["phase2"][i] == "lamellar":
+            query[3] += 1
+        if (bcdb["phase1"][i] == "lamellar" or bcdb["phase2"][i] == "lamellar" or int(bcdb["Mn"][i]) > 30000) and \
+            int(bcdb["T"][i]) > 100:
+            query[4] += 1
+    print(query)
+
+# create_table()
+# database_summary()
+# SI_Table4()
+main_Figure5()
+
+# check table columns
+# connection = sqlite3.connect('BCDB.db')
+# cursor = connection.cursor()
+# list(cursor.execute("select * from diblock"))
+# columns = list(map(lambda x: x[0], cursor.description))
+# print(columns)
