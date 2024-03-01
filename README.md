@@ -16,7 +16,7 @@ Here are some files you will encounter in this repository:
 - Manual curation from tables, text, and figures from peer-reviewed scientific literature. 
 - A DOI is provided for each data point. A paper on the full methodology will be published. 
 - Data from figures was extracted using WebPlotDigitizer.
-  - Citation: Rohatgi, A. (2015). WebPlotDigitizer (Version 4.4) [Computer software]. Retrieved from https://automeris.io/WebPlotDigitizer/index.html)
+  - Citation: Rohatgi, A. (2015). WebPlotDigitizer (Version 4.4) [Computer software]. Retrieved from https://automeris.io/WebPlotDigitizer/index.html.
 
 # Repository Location
 http://doi.org/10.5281/zenodo.4780309
